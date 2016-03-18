@@ -4,11 +4,11 @@ public class Compounding {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.print("----------------------欢迎使用本系统---------------------");
-		System.out.print("\n请输入你所需要的服务(请输入对应数字):");
+		System.out.println("----------------------欢迎使用本系统---------------------");
+		System.out.println("请输入你所需要的服务(请输入对应数字):");
 		int a = 0;
 		while (a == 0) {
-			System.out.print("\n1.复利终值   2.单利总息   3.单利本金    4.复利存期   5.复利利率   6.   7.退出\n");
+			System.out.println("1.复利终值   2.单利总息   3.单利本金    4.复利存期   5.复利利率   6.   7.退出");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -32,13 +32,14 @@ public class Compounding {
 				a=1;
 				break;
 			case 6:
+				regular();
 				a=1;
 				break;
 			case 7:
 				System.exit(0);
 				break;
 			default:
-				System.out.print("你所输入的指令错误！请重新输入！！");
+				System.out.println("你所输入的指令错误！请重新输入！！\n");
 				break;
 			}
 		}
@@ -49,7 +50,7 @@ public class Compounding {
 		Scanner scanner = new Scanner(System.in);
 		System.out.print("请输入你要存款的本金:");
 		double compoundMoney = scanner.nextDouble();
-		System.out.print("请输入你的利息期数:");
+		System.out.print("请输入你的存期:");
 		int compoundYear = scanner.nextInt();
 		System.out.print("请输入当前利率:");
 		float compoundRate = scanner.nextFloat();
@@ -111,7 +112,44 @@ public class Compounding {
 		float compoundRate = (float) ((Math.pow(compoundSum/compoundMoney, 1.0/compoundYear))-1);  
 		System.out.print("报酬率应为:"+compoundRate*100+"%");
 	}
-		
-		
-		
+	
+	
+	// 6.计算按每年或每月定期投资的终值
+    static void regular() {
+        Scanner scanner = new Scanner(System.in);
+        int a = 0;
+        while (a == 0) {
+            System.out.println("请输入你所需要的服务(请输入对应数字):");
+            System.out.println("1.按年投资   2.按月投资");
+            int choice = scanner.nextInt();
+			switch (choice) {
+			case 1:
+				System.out.print("请输入你要存款的本金:");
+                double yearlyMoney = scanner.nextDouble();
+                System.out.print("请输入你的年回报率:");
+                float yearlyRate = scanner.nextFloat();
+                System.out.print("请输入你的投资年限(年):");
+                int year = scanner.nextInt();
+                double sum = yearlyMoney * (Math.pow(1 + yearlyRate, year) - 1) / yearlyRate;
+                System.out.print("你的资产总值为:" + (float)(Math.round(sum*100))/100+"元");
+				a = 1;
+				break;
+			case 2:
+				System.out.print("请输入你要存款的本金:");
+                double monthlyMoney = scanner.nextDouble();
+                System.out.print("请输入你的月回报率:");
+                float monthlyRate = scanner.nextFloat();
+                System.out.print("请输入你的投资年限(月)：");
+                int month = scanner.nextInt();
+                double sum1 = monthlyMoney * (Math.pow(1 + monthlyRate / 12.0, month * 12) - 1) / (monthlyRate / 12);
+                System.out.print("你的资产总值为:" + sum1+"元");
+				a = 1;
+				break;
+			default:
+				System.out.println("你所输入的指令错误！请重新输入！！\n");
+				break;
+			}
+        }
+
+    }
 }
