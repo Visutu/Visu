@@ -8,7 +8,7 @@ public class Compounding {
 		System.out.println("请输入你所需要的服务(请输入对应数字):");
 		int a = 0;
 		while (a == 0) {
-			System.out.println("1.复利终值   2.单利总息   3.单利本金    4.复利存期   5.复利利率   6.   7.退出");
+			System.out.println("1.复利终值   2.单利总息   3.单利本金    4.复利存期   5.复利利率   6.定额定投收益终值   7.   8.退出");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -32,10 +32,13 @@ public class Compounding {
 				a=1;
 				break;
 			case 6:
-				regular();
+				Regular();
 				a=1;
 				break;
 			case 7:
+				Repayment();
+				break;
+			case 8:
 				System.exit(0);
 				break;
 			default:
@@ -115,7 +118,7 @@ public class Compounding {
 	
 	
 	// 6.计算按每年或每月定期投资的终值
-    static void regular() {
+    static void Regular() {
         Scanner scanner = new Scanner(System.in);
         int a = 0;
         while (a == 0) {
@@ -151,5 +154,18 @@ public class Compounding {
 			}
         }
 
+    }
+    
+    //7.复利等额还款金额
+    static void Repayment(){
+    	Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入你要贷款的本金:");
+        double money = scanner.nextDouble(); 
+        System.out.println("请输入还款年限:");
+        int year = scanner.nextInt(); 
+        System.out.println("请输入年利率:");
+        float rate = scanner.nextFloat(); 
+        double repayment=(money*(rate/2)*Math.pow(1+(rate/12), year*12))/(Math.pow(1+(rate/12),year*12)-1);
+        System.out.println("你的还款金额为:" + (float)repayment+"元");
     }
 }
