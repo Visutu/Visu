@@ -8,7 +8,7 @@ public class Compounding {
 		System.out.println("请输入你所需要的服务(请输入对应数字):");
 		int a = 0;
 		while (a == 0) {
-			System.out.println("1.复利终值   2.单利总息   3.单利本金    4.复利存期   5.复利利率   6.定额定投收益终值   7.   8.退出");
+			System.out.println("1.复利终值   2.单利总息   3.单利本金    4.复利存期   5.复利利率   6.定额定投收益终值   7.复利等额还款金额   8.退出");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
